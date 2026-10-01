@@ -1,0 +1,65 @@
+{
+  "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "sunlitweed:weed_stalk",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "sunlitweed:weed",
+                  "properties": { "age": "7" }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": { "type": "minecraft:uniform", "min": 1, "max": 2 }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "sunlitweed:weed_seed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bonus_rolls": 0.0,
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "sunlitweed:weed",
+          "properties": { "age": "7" }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "sunlitweed:weed_seed",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "type": "minecraft:uniform", "min": 1, "max": 2 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

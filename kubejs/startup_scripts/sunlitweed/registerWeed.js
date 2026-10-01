@@ -1,0 +1,47 @@
+console.info("[sunlitweed] registerWeed.js loaded");
+
+StartupEvents.registry("item", (e) => {
+  e.create("sunlitweed:weed_stalk").texture("sunlitweed:item/weed_stalk");
+  e.create("sunlitweed:dried_weed_stalk").texture("sunlitweed:item/dried_weed_stalk");
+  e.create("sunlitweed:weed_bud").texture("sunlitweed:item/weed_bud");
+  e.create("sunlitweed:ground_weed").texture("sunlitweed:item/ground_weed");
+  e.create("sunlitweed:blunt_wrap").texture("sunlitweed:item/blunt_wrap");
+  e.create("sunlitweed:joint").texture("sunlitweed:item/joint").maxStackSize(16);
+  e.create("sunlitweed:blunt").texture("sunlitweed:item/blunt").maxStackSize(16);
+});
+
+// Mirrors society:tubabacco_leaf in registration/registerCrops.js: growth is
+// driven by Dew Drop Farmland Growth (random tick cancelled via #minecraft:crops),
+// so randomTick is intentionally empty. Seed item id = sunlitweed:weed_seed.
+StartupEvents.registry("block", (e) => {
+  const stageModel = (stage) => ({ model: `sunlitweed:block/weed_stage${stage}` });
+  const ageToStage = [0, 0, 1, 1, 2, 2, 3, 3];
+
+  e
+    .create("sunlitweed:weed", "crop")
+    .age(7, (builder) => {
+      builder
+        .shape(0, 0, 0, 0, 16, 4, 16)
+        .shape(1, 0, 0, 0, 16, 5, 16)
+        .shape(2, 0, 0, 0, 16, 8, 16)
+        .shape(3, 0, 0, 0, 16, 9, 16)
+        .shape(4, 0, 0, 0, 16, 12, 16)
+        .shape(5, 0, 0, 0, 16, 13, 16)
+        .shape(6, 0, 0, 0, 16, 16, 16)
+        .shape(7, 0, 0, 0, 16, 16, 16);
+    })
+    .survive((state, level, pos) => global.surviveCheck(level, pos))
+    .dropSeed(false)
+    .crop("sunlitweed:weed_stalk", 1)
+    .tagBlock("minecraft:mineable/hoe")
+    .tagBlock("minecraft:crops")
+    .randomTick((tick) => {})
+    .item((seedItem) => {
+      seedItem.texture("sunlitweed:item/weed_seed");
+    }).blockstateJson = {
+    multipart: ageToStage.map((stage, age) => ({
+      when: { age: age },
+      apply: stageModel(stage),
+    })),
+  };
+});

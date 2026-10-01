@@ -1,0 +1,28 @@
+// priority: -100
+console.info("[sunlitweed] weedGlobals.js loaded");
+
+// Runs after globalBlockEntityHandlers.js (priority 1000) and globalRegistry.js
+// (priority -20), so the pack's globals already exist and global.trades is built.
+
+// Quality stars, fertilizer bonuses and farming skill perks (server_scripts/loot/farmingLoot.js)
+global.cropList.push("sunlitweed:weed");
+
+const sunlitWeedPrices = [
+  { item: "sunlitweed:weed_seed", value: 20 },
+  { item: "sunlitweed:weed_stalk", value: 60 },
+  { item: "sunlitweed:dried_weed_stalk", value: 90 },
+  { item: "sunlitweed:weed_bud", value: 40 },
+  { item: "sunlitweed:ground_weed", value: 45 },
+  { item: "sunlitweed:blunt_wrap", value: 60 },
+  { item: "sunlitweed:joint", value: 140 },
+  { item: "sunlitweed:blunt", value: 260 },
+];
+
+sunlitWeedPrices.forEach((entry) => {
+  // global.crops feeds the price tooltip; global.trades is what the shipping bin reads
+  global.crops.push(entry);
+  global.trades.set(entry.item, {
+    value: global.getConfiguredValue(entry.value, "crop"),
+    multiplier: "shippingbin:crop_sell_multiplier",
+  });
+});

@@ -1,0 +1,19 @@
+{
+  "block.sunlitweed.weed": "Weed Plant",
+  "item.sunlitweed.weed_seed": "Weed Seeds",
+  "item.sunlitweed.weed_stalk": "Weed Stalk",
+  "item.sunlitweed.dried_weed_stalk": "Dried Weed Stalk",
+  "item.sunlitweed.weed_bud": "Weed Bud",
+  "item.sunlitweed.ground_weed": "Ground Weed",
+  "item.sunlitweed.blunt_wrap": "Blunt Wrap",
+  "item.sunlitweed.joint": "Joint",
+  "item.sunlitweed.blunt": "Blunt",
+  "tooltip.sunlitweed.weed_seed": "Grows in spring, summer and autumn. Plant on farmland.",
+  "tooltip.sunlitweed.weed_stalk": "Hang it on a drying rack.",
+  "tooltip.sunlitweed.dried_weed_stalk": "Trim the buds with a knife or cutting board.",
+  "tooltip.sunlitweed.weed_bud": "Grind in a millstone, crusher or mincer.",
+  "tooltip.sunlitweed.ground_weed": "Roll with paper, or with a blunt wrap.",
+  "tooltip.sunlitweed.blunt_wrap": "Made by pressing or cutting dried tubabacco.",
+  "tooltip.sunlitweed.joint": "Right-click to smoke: Regeneration I, a little slow and dizzy.",
+  "tooltip.sunlitweed.blunt": "Right-click to smoke: Regeneration II, slow, dizzy and the munchies."
+}
