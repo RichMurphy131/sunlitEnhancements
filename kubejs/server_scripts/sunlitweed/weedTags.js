@@ -11,6 +11,24 @@ ServerEvents.tags("item", (e) => {
     "sunlitweed:weed_stalk",
     "sunlitweed:dried_weed_stalk",
     "sunlitweed:weed_bud",
+    "sunlitweed:ground_weed",
+    "sunlitweed:blunt_wrap",
+    "sunlitweed:joint",
+    "sunlitweed:blunt",
+    "sunlitweed:golden_teacher",
+    "sunlitweed:liberty_cap",
+    "sunlitweed:dried_golden_teacher",
+    "sunlitweed:dried_liberty_cap",
+    "sunlitweed:mushroom_tea_blend",
+  ]);
+  // Mushroom Tea Blend takes any mix of these
+  e.add("sunlitweed:dried_mushrooms", ["sunlitweed:dried_golden_teacher", "sunlitweed:dried_liberty_cap"]);
+  // Any Herbalbrews tea leaf works for mushroom tea
+  e.add("sunlitweed:tea_leaves", [
+    "herbalbrews:green_tea_leaf",
+    "herbalbrews:dried_green_tea",
+    "herbalbrews:dried_black_tea",
+    "herbalbrews:dried_oolong_tea",
   ]);
 });
 

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "sunlitweed:block/liberty_cap_log_top",
+    "side": "sunlitweed:block/liberty_cap_log_side"
+  }
+}

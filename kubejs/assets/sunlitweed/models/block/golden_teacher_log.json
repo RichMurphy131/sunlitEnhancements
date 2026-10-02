@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "sunlitweed:block/golden_teacher_log_top",
+    "side": "sunlitweed:block/golden_teacher_log_side"
+  }
+}

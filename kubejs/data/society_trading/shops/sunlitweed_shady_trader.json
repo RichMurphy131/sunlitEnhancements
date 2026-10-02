@@ -1,0 +1,101 @@
+{
+  "shop_id": "sunlitweed_shady_trader",
+  "name": "shop.sunlitweed.shady_trader",
+  "texture": "minecraft:textures/block/green_glazed_terracotta",
+  "entity": "minecraft:wandering_trader",
+  "entity_data": "sunlitweed_shady_trader",
+  "hidden_from_selector": true,
+  "trades": [
+    {
+      "offer": {
+        "item": "sunlitweed:weed_seed",
+        "count": 4
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 1
+      },
+      "limit": 4,
+      "numismatics_cost": 64,
+      "trade_id": "shady_trader_weed_seed"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:joint",
+        "count": 1
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 4
+      },
+      "limit": 4,
+      "numismatics_cost": 256,
+      "trade_id": "shady_trader_joint"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:blunt",
+        "count": 1
+      },
+      "request": {
+        "item": "numismatics:crown",
+        "count": 1
+      },
+      "limit": 4,
+      "numismatics_cost": 512,
+      "trade_id": "shady_trader_blunt"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:liberty_cap",
+        "count": 2
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 3
+      },
+      "limit": 4,
+      "numismatics_cost": 192,
+      "trade_id": "shady_trader_liberty_cap"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:golden_teacher",
+        "count": 2
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 5
+      },
+      "limit": 4,
+      "numismatics_cost": 320,
+      "trade_id": "shady_trader_golden_teacher"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:liberty_cap_log",
+        "count": 1
+      },
+      "request": {
+        "item": "numismatics:crown",
+        "count": 2
+      },
+      "limit": 4,
+      "numismatics_cost": 1024,
+      "trade_id": "shady_trader_liberty_cap_log"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:golden_teacher_log",
+        "count": 1
+      },
+      "request": {
+        "item": "numismatics:crown",
+        "count": 3
+      },
+      "limit": 4,
+      "numismatics_cost": 1536,
+      "trade_id": "shady_trader_golden_teacher_log"
+    }
+  ]
+}

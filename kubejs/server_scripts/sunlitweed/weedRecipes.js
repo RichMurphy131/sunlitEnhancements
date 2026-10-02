@@ -12,7 +12,8 @@ ServerEvents.recipes((e) => {
     });
   };
 
-  // Harvested stalk -> drying rack -> dried stalk
+  // Harvested stalk -> dried stalk. The pack's Dehydrator (startup_scripts/sunlitweed/weedDehydrator.js)
+  // keeps quality; the drying rack is the cheap option and loses it.
   e.custom({
     type: "farm_and_charm:drying",
     ingredient: { item: "sunlitweed:weed_stalk" },

@@ -1,10 +1,17 @@
 """Generate 16x16 placeholder pixel art for the sunlitweed KubeJS add-on (stdlib only)."""
+import colorsys
+import os
 import struct
 import sys
+import zipfile
 import zlib
 from pathlib import Path
 
 OUT = Path(sys.argv[1])
+# Vanilla client jar, for the Shady Trader's recoloured wandering trader skin
+JAR = Path(sys.argv[sys.argv.index("--jar") + 1]) if "--jar" in sys.argv else Path(
+    os.environ.get("USERPROFILE", "~"), "curseforge/minecraft/Install/versions/1.20.1/1.20.1.jar"
+).expanduser()
 
 PALETTE = {
     ".": (0, 0, 0, 0),
@@ -237,17 +244,235 @@ GolGG..b..GGloG.
 # Dried stalk is the fresh stalk recoloured
 SPRITES["item/dried_weed_stalk"] = "".join(DRIED.get(c, c) for c in SPRITES["item/weed_stalk"])
 
+# Magic mushrooms and their inoculated logs
+PALETTE.update({
+    "J": (200, 142, 54, 255),   # golden teacher cap
+    "j": (228, 188, 100, 255),  # golden teacher cap highlight
+    "u": (148, 94, 40, 255),    # golden teacher cap rim
+    "m": (172, 152, 122, 255),  # gills
+    "i": (234, 226, 204, 255),  # pale stem
+    "I": (196, 186, 160, 255),  # pale stem shade
+    "L": (122, 84, 44, 255),    # liberty cap
+    "f": (166, 120, 66, 255),   # liberty cap highlight
+    "F": (86, 58, 30, 255),     # liberty cap nipple
+    "v": (216, 202, 172, 255),  # thin stem
+    "V": (176, 160, 130, 255),  # thin stem shade
+    "O": (78, 60, 36, 255),     # bark dark
+    "Q": (108, 84, 52, 255),    # bark
+    "W": (138, 110, 70, 255),   # bark light
+    "Z": (182, 150, 98, 255),   # log end light ring
+    "A": (150, 120, 74, 255),   # log end dark ring
+})
 
-def write_png(path, rows):
-    raw = b"".join(b"\x00" + b"".join(bytes(PALETTE[c]) for c in row) for row in rows)
+SPRITES["item/golden_teacher"] = """
+................
+.....uuuuuu.....
+...uJJjjjjJJu...
+..uJjjjjjjjjJu..
+..uJJjjjJjjJJu..
+.uJJJJJJJJJJJJu.
+.uuuummmmmmuuuu.
+......iiIi......
+......iiIi......
+......iiIi......
+.....iiiIi......
+.....iiiIi......
+.....iiiiIi.....
+....iiiiiIIi....
+................
+................
+"""
+SPRITES["item/liberty_cap"] = """
+................
+.......F........
+......fLf.......
+......fLL.......
+.....fLLLL......
+.....LLLLL......
+....LLLLLLL.....
+....L.vV..L.....
+.......vV.......
+.......vV.......
+........vV......
+........vV......
+.......vVV......
+.......vV.......
+......vVVV......
+................
+"""
+
+# Dried mushrooms: same sprites, shrivelled and darker
+PALETTE.update({
+    "d": (152, 106, 48, 255),   # dried golden cap
+    "N": (176, 136, 76, 255),   # dried golden highlight
+    "M": (108, 70, 34, 255),    # dried golden rim
+    "U": (196, 182, 150, 255),  # dried pale stem
+})
+DRIED_MUSHROOM = {"J": "d", "j": "N", "u": "M", "i": "U", "L": "M", "f": "d", "v": "U"}
+for name in ("golden_teacher", "liberty_cap"):
+    SPRITES[f"item/dried_{name}"] = "".join(DRIED_MUSHROOM.get(c, c) for c in SPRITES[f"item/{name}"])
+
+# Mushroom tea in a cup, and the blend it's brewed from
+PALETTE.update({
+    "1": (214, 206, 190, 255),  # cup
+    "2": (168, 158, 140, 255),  # cup shade
+    "3": (172, 128, 60, 255),   # mushroom tea
+    "5": (226, 220, 210, 160),  # steam
+    "6": (196, 170, 120, 255),  # blend pouch
+    "7": (150, 124, 82, 255),   # blend pouch shade
+    "8": (96, 70, 40, 255),     # pouch string
+})
+MUG = """
+................
+.....5...5......
+......5.5.......
+.....5...5......
+................
+..1111111111....
+..1TTTTTTTT1....
+..2111111112222.
+..21111111112.2.
+..21111111112.2.
+..21111111112.2.
+..21111111112222
+..2111111111....
+...22222222.....
+................
+................
+"""
+SPRITES["item/mushroom_tea"] = MUG.replace("T", "3")
+SPRITES["item/mushroom_tea_blend"] = """
+................
+.......8........
+......g8g.......
+.....gl8Gg......
+......888.......
+.....66666......
+....6666666.....
+...666N66g67....
+...66g666d67....
+..6666666N667...
+..66d66g66667...
+..666666N6667...
+..66g6666d667...
+...666666667....
+....7777777.....
+................
+"""
+
+BARK = """
+OQWQQOQQWQOQQWQO
+OQQQWOQQQQOQWQQO
+OQQQQOWQQQOQQQQO
+OQWQQOQQWQOQQWQO
+OOQQQOQQQQOOQQQO
+OQQWQOQWQQOQQWQO
+OQQQQOQQQQOQQQQO
+OQWQQOOQQWOQWQQO
+OQQQWOQQQQOQQQWO
+OQQQQOQWQQOQQQQO
+OQWQQOQQQQOOQQQO
+OQQQQOQQWQOQWQQO
+OQQWQOQQQQOQQQQO
+OQQQQOOQQQOQQWQO
+OQWQQOQQWQOQQQQO
+OQQQQOQQQQOQWQQO
+"""
+# Small mushrooms sprouting from the bark: (row, col, sprite rows), "." keeps bark
+BARK_SPROUTS = {
+    "golden_teacher": [(2, 2, ["uJJu", "umm.", ".i.."]), (9, 9, ["uJjJu", "ummmu", "..i.."])],
+    "liberty_cap": [(3, 2, [".F.", "ff.", "fff", ".v."]), (10, 10, [".F.", "fff", ".v."])],
+}
+for mushroom, sprouts in BARK_SPROUTS.items():
+    grid = [list(row) for row in BARK.strip("\n").split("\n")]
+    for top, left, sprite in sprouts:
+        for dy, line in enumerate(sprite):
+            for dx, c in enumerate(line):
+                if c != ".":
+                    grid[top + dy][left + dx] = c
+    SPRITES[f"block/{mushroom}_log_side"] = "\n".join("".join(r) for r in grid)
+    # Log end: bark border, growth rings, a speck of mushroom
+    ends = []
+    for y in range(16):
+        row = ""
+        for x in range(16):
+            ring = min(x, y, 15 - x, 15 - y)
+            row += "O" if ring == 0 else ("Z" if ring % 2 else "A")
+        ends.append(row)
+    speck = "J" if mushroom == "golden_teacher" else "L"
+    ends[4] = ends[4][:11] + speck + ends[4][12:]
+    SPRITES[f"block/{mushroom}_log_top"] = "\n".join(ends)
+
+
+def write_rgba(path, pixels, width, height):
+    raw = b"".join(
+        b"\x00" + b"".join(bytes(px) for px in pixels[y * width:(y + 1) * width]) for y in range(height)
+    )
     def chunk(tag, data):
         return struct.pack(">I", len(data)) + tag + data + struct.pack(">I", zlib.crc32(tag + data) & 0xFFFFFFFF)
     png = (b"\x89PNG\r\n\x1a\n"
-           + chunk(b"IHDR", struct.pack(">IIBBBBB", 16, 16, 8, 6, 0, 0, 0))
+           + chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 6, 0, 0, 0))
            + chunk(b"IDAT", zlib.compress(raw, 9))
            + chunk(b"IEND", b""))
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(png)
+
+
+def write_png(path, rows):
+    write_rgba(path, [PALETTE[c] for row in rows for c in row], 16, 16)
+
+
+def read_rgba(data):
+    """Decodes an 8-bit RGBA, non-interlaced PNG (enough for vanilla entity textures)."""
+    pos, idat = 8, b""
+    while pos < len(data):
+        length, tag = struct.unpack(">I4s", data[pos:pos + 8])
+        body = data[pos + 8:pos + 8 + length]
+        pos += 12 + length
+        if tag == b"IHDR":
+            width, height, depth, colour, _, _, interlace = struct.unpack(">IIBBBBB", body)
+            assert (depth, colour, interlace) == (8, 6, 0), "expected 8-bit RGBA, non-interlaced"
+        elif tag == b"IDAT":
+            idat += body
+    raw, stride, bpp = zlib.decompress(idat), width * 4, 4
+    out, prev = bytearray(), bytearray(stride)
+    for y in range(height):
+        kind, line = raw[y * (stride + 1)], bytearray(raw[y * (stride + 1) + 1:(y + 1) * (stride + 1)])
+        for i in range(stride):
+            a = line[i - bpp] if i >= bpp else 0
+            b, c = prev[i], prev[i - bpp] if i >= bpp else 0
+            if kind == 1:
+                line[i] = (line[i] + a) & 255
+            elif kind == 2:
+                line[i] = (line[i] + b) & 255
+            elif kind == 3:
+                line[i] = (line[i] + (a + b) // 2) & 255
+            elif kind == 4:
+                p = a + b - c
+                pa, pb, pc = abs(p - a), abs(p - b), abs(p - c)
+                line[i] = (line[i] + (a if pa <= pb and pa <= pc else b if pb <= pc else c)) & 255
+        out += line
+        prev = line
+    return [tuple(out[i:i + 4]) for i in range(0, len(out), 4)], width, height
+
+
+# Rasta bands for the Shady Trader's robe, top to bottom of each body part
+RASTA = [(196, 40, 36), (240, 196, 48), (40, 140, 60)]
+
+
+def rasta_trader():
+    pixels, width, height = read_rgba(zipfile.ZipFile(JAR).read("assets/minecraft/textures/entity/wandering_trader.png"))
+    out = []
+    for i, (r, g, b, a) in enumerate(pixels):
+        hue, light, sat = colorsys.rgb_to_hls(r / 255, g / 255, b / 255)
+        # Blue/teal robe and hood; skin, eyes, nose and brown trim are left alone
+        if a and sat > 0.15 and 0.42 < hue < 0.75:
+            band = RASTA[(i // width // 3) % 3]
+            shade = min(1.4, 0.45 + light * 1.3)
+            out.append(tuple(min(255, int(ch * shade)) for ch in band) + (a,))
+        else:
+            out.append((r, g, b, a))
+    return out, width, height
 
 
 for name, art in SPRITES.items():
@@ -255,3 +480,11 @@ for name, art in SPRITES.items():
     assert len(rows) == 16 and all(len(r) == 16 for r in rows), f"{name}: bad grid size"
     write_png(OUT / f"{name}.png", rows)
     print("wrote", name)
+
+# Entity Texture Features swaps this in for wandering traders named "Shady Trader"
+if JAR.is_file():
+    pixels, width, height = rasta_trader()
+    write_rgba(OUT.parent.parent / "minecraft/optifine/random/entity/wandering_trader2.png", pixels, width, height)
+    print("wrote shady trader skin")
+else:
+    print(f"skipped shady trader skin: no Minecraft jar at {JAR} (pass --jar path/to/1.20.1.jar)")

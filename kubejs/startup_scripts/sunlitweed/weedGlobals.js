@@ -16,6 +16,14 @@ const sunlitWeedPrices = [
   { item: "sunlitweed:blunt_wrap", value: 60 },
   { item: "sunlitweed:joint", value: 140 },
   { item: "sunlitweed:blunt", value: 260 },
+  { item: "sunlitweed:golden_teacher", value: 80 },
+  { item: "sunlitweed:liberty_cap", value: 50 },
+  { item: "sunlitweed:dried_golden_teacher", value: 110 },
+  { item: "sunlitweed:dried_liberty_cap", value: 70 },
+  { item: "sunlitweed:mushroom_tea_blend", value: 280 },
+  { item: "sunlitweed:mushroom_tea", value: 90 },
+  { item: "sunlitweed:golden_teacher_log", value: 300 },
+  { item: "sunlitweed:liberty_cap_log", value: 300 },
 ];
 
 sunlitWeedPrices.forEach((entry) => {

@@ -6,8 +6,18 @@ StartupEvents.registry("item", (e) => {
   e.create("sunlitweed:weed_bud").texture("sunlitweed:item/weed_bud");
   e.create("sunlitweed:ground_weed").texture("sunlitweed:item/ground_weed");
   e.create("sunlitweed:blunt_wrap").texture("sunlitweed:item/blunt_wrap");
-  e.create("sunlitweed:joint").texture("sunlitweed:item/joint").maxStackSize(16);
-  e.create("sunlitweed:blunt").texture("sunlitweed:item/blunt").maxStackSize(16);
+
+  // Smoking settings live in weedSmoking.js
+  ["joint", "blunt"].forEach((name) => {
+    const id = `sunlitweed:${name}`;
+    e.create(id)
+      .texture(`sunlitweed:item/${name}`)
+      .maxStackSize(16)
+      .useAnimation("toot_horn")
+      .useDuration((itemstack) => global.sunlitWeedSmokeables[id].useTicks)
+      .use((level, player, hand) => global.sunlitWeedStartSmoking(level, player, hand))
+      .finishUsing((itemstack, level, entity) => global.sunlitWeedFinishSmoking(itemstack, level, entity));
+  });
 });
 
 // Mirrors society:tubabacco_leaf in registration/registerCrops.js: growth is
