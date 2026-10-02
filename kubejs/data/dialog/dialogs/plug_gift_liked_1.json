@@ -1,0 +1,26 @@
+{
+	"id": "plug_gift_liked_1",
+	"title": "plug liked gift",
+	"description": "dialog.npc.plug.gift_liked.1.description",
+	"entries": [
+		{
+			"id": "start",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.gift_liked.1.line_0"
+				}
+			],
+			"portraits": [
+				{
+					"path": "liked/plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		}
+	]
+}

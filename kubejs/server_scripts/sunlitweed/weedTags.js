@@ -1,10 +1,14 @@
 console.info("[sunlitweed] weedTags.js loaded");
 
 const sunlitWeedSeasons = ["spring", "summer", "autumn"];
+const sunlitCocaSeasons = ["summer", "autumn"];
 
 ServerEvents.tags("item", (e) => {
   sunlitWeedSeasons.forEach((season) => {
     e.add(`sereneseasons:${season}_crops`, ["sunlitweed:weed_seed", "sunlitweed:weed_stalk"]);
+  });
+  sunlitCocaSeasons.forEach((season) => {
+    e.add(`sereneseasons:${season}_crops`, ["sunlitweed:coca_seed", "sunlitweed:coca_leaf"]);
   });
   // Lets harvested stalks and their products carry quality stars
   e.add("quality_food:material_whitelist", [
@@ -20,6 +24,11 @@ ServerEvents.tags("item", (e) => {
     "sunlitweed:dried_golden_teacher",
     "sunlitweed:dried_liberty_cap",
     "sunlitweed:mushroom_tea_blend",
+    "sunlitweed:coca_leaf",
+    "sunlitweed:base_coca_paste",
+    "sunlitweed:refined_coca_powder",
+    "sunlitweed:cocaine_brick",
+    "sunlitweed:cocaine_line",
   ]);
   // Mushroom Tea Blend takes any mix of these
   e.add("sunlitweed:dried_mushrooms", ["sunlitweed:dried_golden_teacher", "sunlitweed:dried_liberty_cap"]);
@@ -35,5 +44,8 @@ ServerEvents.tags("item", (e) => {
 ServerEvents.tags("block", (e) => {
   sunlitWeedSeasons.forEach((season) => {
     e.add(`sereneseasons:${season}_crops`, "sunlitweed:weed");
+  });
+  sunlitCocaSeasons.forEach((season) => {
+    e.add(`sereneseasons:${season}_crops`, "sunlitweed:coca");
   });
 });

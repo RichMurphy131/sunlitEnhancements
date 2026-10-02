@@ -1,0 +1,84 @@
+{
+  "shop_id": "plug",
+  "name": "shop.society_trading.plug",
+  "texture": "dialog:textures/portraits/plug",
+  "stage_required": "invited_plug",
+  "jei_catalyst": {
+    "item": "society:villager",
+    "nbt": "{type:{id:\"society:plug\"}}"
+  },
+  "trades": [
+    {
+      "offer": {
+        "item": "sunlitweed:coca_seed",
+        "count": 4
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 2
+      },
+      "numismatics_cost": 128,
+      "trade_id": "plug_coca_seed"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:slaked_lime",
+        "count": 4
+      },
+      "request": {
+        "item": "numismatics:bevel",
+        "count": 2
+      },
+      "numismatics_cost": 16,
+      "trade_id": "plug_slaked_lime"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:weed_seed",
+        "count": 4
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 1
+      },
+      "numismatics_cost": 64,
+      "trade_id": "plug_weed_seed"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:liberty_cap",
+        "count": 2
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 3
+      },
+      "numismatics_cost": 192,
+      "trade_id": "plug_liberty_cap"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:golden_teacher",
+        "count": 2
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 5
+      },
+      "numismatics_cost": 320,
+      "trade_id": "plug_golden_teacher"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:cocaine_line",
+        "count": 1
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 6
+      },
+      "numismatics_cost": 384,
+      "trade_id": "plug_cocaine_line"
+    }
+  ]
+}

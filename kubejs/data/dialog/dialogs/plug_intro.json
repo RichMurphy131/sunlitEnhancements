@@ -1,0 +1,83 @@
+{
+	"id": "plug_intro",
+	"title": "plug introduction",
+	"description": "dialog.npc.plug.intro.0.description",
+	"entries": [
+		{
+			"id": "start",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.intro.0.line_0"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		},
+		{
+			"id": 1,
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.intro.0.line_1"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		},
+		{
+			"id": 2,
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.intro.0.line_2"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		},
+		{
+			"id": "end",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.intro.0.line_3"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		}
+	]
+}

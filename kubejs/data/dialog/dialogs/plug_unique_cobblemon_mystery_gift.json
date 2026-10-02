@@ -1,0 +1,64 @@
+{
+	"id": "plug_unique_cobblemon_mystery_gift",
+	"title": "plug mystery gift",
+	"description": "dialog.npc.plug.unique_cobblemon_mystery_gift.description",
+	"entries": [
+		{
+			"id": "start",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.unique_cobblemon_mystery_gift.line_0"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		},
+		{
+			"id": 1,
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.unique_cobblemon_mystery_gift.line_1"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		},
+		{
+			"id": "end",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.unique_cobblemon_mystery_gift.line_2"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		}
+	]
+}

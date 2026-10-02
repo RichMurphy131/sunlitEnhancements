@@ -1,0 +1,45 @@
+{
+	"id": "plug_gift_loved_1",
+	"title": "plug loved gift",
+	"description": "dialog.npc.plug.gift_loved.1.description",
+	"entries": [
+		{
+			"id": "start",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.gift_loved.1.line_0"
+				}
+			],
+			"portraits": [
+				{
+					"path": "loved/plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		},
+		{
+			"id": "end",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.gift_loved.1.line_1"
+				}
+			],
+			"portraits": [
+				{
+					"path": "loved/plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		}
+	]
+}

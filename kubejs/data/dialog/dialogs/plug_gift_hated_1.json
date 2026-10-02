@@ -1,0 +1,26 @@
+{
+	"id": "plug_gift_hated_1",
+	"title": "plug hated gift",
+	"description": "dialog.npc.plug.gift_hated.1.description",
+	"entries": [
+		{
+			"id": "start",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.gift_hated.1.line_0"
+				}
+			],
+			"portraits": [
+				{
+					"path": "hated/plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		}
+	]
+}

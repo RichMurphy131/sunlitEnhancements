@@ -1,0 +1,45 @@
+{
+	"id": "plug_gift_disliked_0",
+	"title": "plug disliked gift",
+	"description": "dialog.npc.plug.gift_disliked.0.description",
+	"entries": [
+		{
+			"id": "start",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.gift_disliked.0.line_0"
+				}
+			],
+			"portraits": [
+				{
+					"path": "disliked/plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		},
+		{
+			"id": "end",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.gift_disliked.0.line_1"
+				}
+			],
+			"portraits": [
+				{
+					"path": "disliked/plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		}
+	]
+}

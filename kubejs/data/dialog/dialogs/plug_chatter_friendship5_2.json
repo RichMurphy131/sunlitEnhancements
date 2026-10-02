@@ -1,0 +1,49 @@
+{
+	"id": "plug_chatter_friendship5_2",
+	"title": "[2] plug chatter at friendship5",
+	"description": "dialog.npc.plug.chatter_friendship5.2.description",
+	"allowClose": true,
+	"entries": [
+		{
+			"id": "start",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.chatter_friendship5.2.line_0"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		},
+		{
+			"id": "end",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.chatter_friendship5.2.line_1"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			],
+			"command": [
+				"openshop @p plug"
+			]
+		}
+	]
+}

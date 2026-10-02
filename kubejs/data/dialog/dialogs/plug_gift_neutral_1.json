@@ -1,0 +1,26 @@
+{
+	"id": "plug_gift_neutral_1",
+	"title": "plug neutral gift",
+	"description": "dialog.npc.plug.gift_neutral.1.description",
+	"entries": [
+		{
+			"id": "start",
+			"speaker": {
+				"translate": "dialog.npc.plug.name",
+				"color": "white"
+			},
+			"text": [
+				{
+					"translate": "dialog.npc.plug.gift_neutral.1.line_0"
+				}
+			],
+			"portraits": [
+				{
+					"path": "plug.png",
+					"position": "INLINE",
+					"brightness": 1
+				}
+			]
+		}
+	]
+}

@@ -21,6 +21,19 @@
     },
     {
       "offer": {
+        "item": "sunlitweed:coca_seed",
+        "count": 4
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 2
+      },
+      "limit": 4,
+      "numismatics_cost": 128,
+      "trade_id": "shady_trader_coca_seed"
+    },
+    {
+      "offer": {
         "item": "sunlitweed:joint",
         "count": 1
       },
@@ -96,6 +109,20 @@
       "limit": 4,
       "numismatics_cost": 1536,
       "trade_id": "shady_trader_golden_teacher_log"
+    },
+    {
+      "offer": {
+        "item": "society:invitation",
+        "count": 1,
+        "nbt": "{\"type\":{\"id\":\"society:plug\"}}"
+      },
+      "request": {
+        "item": "numismatics:crown",
+        "count": 3
+      },
+      "limit": 1,
+      "numismatics_cost": 1536,
+      "trade_id": "shady_trader_plug_invitation"
     }
   ]
 }
