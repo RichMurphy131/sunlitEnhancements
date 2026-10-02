@@ -9,6 +9,8 @@ const sunlitWeedDehydratorRecipes = [
   ["sunlitweed:weed_stalk", "sunlitweed:dried_weed_stalk"],
   ["sunlitweed:golden_teacher", "sunlitweed:dried_golden_teacher"],
   ["sunlitweed:liberty_cap", "sunlitweed:dried_liberty_cap"],
+  // Dosed blotter dries in the dark; light and heat would break it down
+  ["sunlitweed:wet_blotter_sheet", "sunlitweed:lsd_blotter_sheet"],
 ];
 sunlitWeedDehydratorRecipes.forEach((entry) => {
   global.dehydratorRecipes.set(entry[0], { output: [`${SUNLITWEED_DEHYDRATOR_BATCH}x ${entry[1]}`] });

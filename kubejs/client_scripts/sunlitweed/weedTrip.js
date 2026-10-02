@@ -1,6 +1,6 @@
 console.info("[sunlitweed] weedTrip.js loaded");
 
-// Client side of a mushroom trip (started by global.sunlitWeedStartTrip in
+// Client side of a mushroom or acid trip (started by global.sunlitWeedStartTrip in
 // startup_scripts/sunlitweed/weedMushrooms.js): cycles vanilla post shaders, plus
 // stray particles and odd sounds. Post shaders may not show with an Oculus shaderpack on.
 const $ResourceLocation = Java.loadClass("net.minecraft.resources.ResourceLocation");
@@ -18,7 +18,9 @@ const sunlitTripShaders = [
   "scan_pincushion",
   "notch",
 ];
-// Short flashes, golden teachers (intensity 2) only
+// Acid (intensity 3+) adds these to the cycle
+const sunlitTripAcidShaders = ["creeper", "spider", "green", "desaturate"];
+// Short flashes, golden teachers (intensity 2) and up
 const sunlitTripFlashes = ["invert", "flip"];
 const sunlitTripParticles = ["minecraft:end_rod", "minecraft:enchant", "minecraft:glow", "minecraft:note"];
 const sunlitTripSounds = [
@@ -27,7 +29,22 @@ const sunlitTripSounds = [
   "minecraft:block.note_block.pling",
   "minecraft:block.note_block.chime",
 ];
-// Ticks each shader stays on: SHADER_MIN + up to SHADER_SPREAD
+// Mana acid (intensity 4): mana-blue sparkles and Botania sounds. Botania's own
+// particles need extra data addParticle can't build, so these are vanilla.
+const sunlitTripManaParticles = [
+  "minecraft:glow",
+  "minecraft:end_rod",
+  "minecraft:electric_spark",
+  "minecraft:soul_fire_flame",
+];
+const sunlitTripManaSounds = [
+  "botania:ding",
+  "botania:mana_pool_craft",
+  "botania:altar_craft",
+  "botania:starcaller",
+  "botania:horn_doot",
+];
+// Ticks each shader stays on: SHADER_MIN + up to SHADER_SPREAD (shorter on acid)
 const SUNLIT_TRIP_SHADER_MIN = 120;
 const SUNLIT_TRIP_SHADER_SPREAD = 80;
 const SUNLIT_TRIP_FLASH_TICKS = 20;
@@ -72,21 +89,26 @@ ClientEvents.tick((e) => {
     return;
   }
 
+  const acid = sunlitTrip.intensity >= 3;
+  const mana = sunlitTrip.intensity >= 4;
   if (sunlitTrip.flashTicks > 0 && --sunlitTrip.flashTicks == 0) sunlitTrip.shaderTicks = 0;
   if (--sunlitTrip.shaderTicks <= 0) {
-    if (sunlitTrip.intensity >= 2 && Math.random() < 0.15) {
+    if (sunlitTrip.intensity >= 2 && Math.random() < (acid ? 0.25 : 0.15)) {
       sunlitTripLoadShader(sunlitTripPick(sunlitTripFlashes));
       sunlitTrip.flashTicks = SUNLIT_TRIP_FLASH_TICKS;
       sunlitTrip.shaderTicks = SUNLIT_TRIP_FLASH_TICKS + 1;
     } else {
-      sunlitTripLoadShader(sunlitTripPick(sunlitTripShaders));
-      sunlitTrip.shaderTicks = SUNLIT_TRIP_SHADER_MIN + Math.floor(Math.random() * SUNLIT_TRIP_SHADER_SPREAD);
+      const pool = acid && Math.random() < 0.4 ? sunlitTripAcidShaders : sunlitTripShaders;
+      sunlitTripLoadShader(sunlitTripPick(pool));
+      const hold = SUNLIT_TRIP_SHADER_MIN + Math.floor(Math.random() * SUNLIT_TRIP_SHADER_SPREAD);
+      sunlitTrip.shaderTicks = acid ? Math.floor(hold / 2) : hold;
     }
   }
 
-  // Stray sparkles around the player, more on golden teachers
-  if (Math.random() < 0.25 * sunlitTrip.intensity) {
-    const particle = $BuiltInRegistries.PARTICLE_TYPE.get(new $ResourceLocation(sunlitTripPick(sunlitTripParticles)));
+  // Stray sparkles around the player, more the stronger the trip
+  if (Math.random() < Math.min(1, 0.25 * sunlitTrip.intensity)) {
+    const particles = mana && Math.random() < 0.6 ? sunlitTripManaParticles : sunlitTripParticles;
+    const particle = $BuiltInRegistries.PARTICLE_TYPE.get(new $ResourceLocation(sunlitTripPick(particles)));
     Client.level.addParticle(
       particle,
       player.x + (Math.random() - 0.5) * 6,
@@ -100,7 +122,8 @@ ClientEvents.tick((e) => {
 
   // Now and then, a sound from nowhere at a strange pitch
   if (Math.random() < 0.004 * sunlitTrip.intensity) {
-    const sound = $BuiltInRegistries.SOUND_EVENT.get(new $ResourceLocation(sunlitTripPick(sunlitTripSounds)));
+    const sounds = mana && Math.random() < 0.5 ? sunlitTripManaSounds : sunlitTripSounds;
+    const sound = $BuiltInRegistries.SOUND_EVENT.get(new $ResourceLocation(sunlitTripPick(sounds)));
     player.playNotifySound(sound, "ambient", 0.4, 0.5 + Math.random());
   }
 });

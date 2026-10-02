@@ -23,6 +23,15 @@ ItemEvents.tooltip((tooltip) => {
     "refined_coca_powder",
     "cocaine_brick",
     "cocaine_line",
+    "ergot",
+    "ergot_loaf",
+    "blank_blotter",
+    "unfinished_blotter_sheet",
+    "wet_blotter_sheet",
+    "lsd_blotter_sheet",
+    "mana_blotter_sheet",
+    "acid_tab",
+    "mana_acid_tab",
   ].forEach((id) => {
     tooltip.add(`sunlitweed:${id}`, Text.translatable(`tooltip.sunlitweed.${id}`).gray());
   });

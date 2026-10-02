@@ -1,6 +1,6 @@
 # sunlitweed
 
-A KubeJS add-on for the **Society: Sunlit Cobblemon** modpack (Forge 1.20.1) that adds a weed crop, magic mushrooms and a coca crop, each with a full processing chain, plus a dealer NPC for your town. It reuses the pack's own crop systems (the same ones as tubabacco), so the plant grows daily on watered farmland, follows the seasons, gets quality stars and fertilizer bonuses, and sells in the shipping bin.
+A KubeJS add-on for the **Society: Sunlit Cobblemon** modpack (Forge 1.20.1) that adds a weed crop, magic mushrooms, a coca crop and LSD, each with a full processing chain, plus a dealer NPC for your town. It reuses the pack's own crop systems (the same ones as tubabacco), so the plant grows daily on watered farmland, follows the seasons, gets quality stars and fertilizer bonuses, and sells in the shipping bin.
 
 ## Production chain
 
@@ -46,6 +46,7 @@ A rasta-coloured wandering trader who turns up the way the vanilla wanderer does
 | Liberty Cap Log | 2 crowns |
 | Golden Teacher Log | 3 crowns |
 | 4 coca seeds | 2 cogs |
+| 2 ergot | 2 cogs |
 | Invitation for The Plug | 3 crowns (limit 1) |
 
 Each trade is limited to 4 unless noted. The shop is `data/society_trading/shops/sunlitweed_shady_trader.json`. Under the hood he's a normal wandering trader named "Shady Trader" with the tag `sunlitweed_shady_trader`. Entity Texture Features gives him the rasta skin by name. To summon one for testing:
@@ -93,11 +94,35 @@ Quality stars from the leaves carry through the mixer, fan, press and knife (Qua
 
 Hold right-click on a line for a second to snort it: Speed II and Haste II for 5 minutes, ×1.25, ×1.5 or ×2 for 1, 2 or 3 stars. The catch is you can't sleep until the next morning (6am). Beds refuse you until then, even if you log out. Effects are in `startup_scripts/sunlitweed/weedSmoking.js` and the sleep ban is in `startup_scripts/sunlitweed/cocaSleep.js`. Recipes are in `server_scripts/sunlitweed/cocaRecipes.js`.
 
+## LSD
+
+Loaves and fishes: five loaves, two fishes, and twelve baskets left over. LSD comes from ergot, a fungus that grows on grain, so it starts as bread. Botania supplies the miracles, and Create handles the liquid-to-blotter end the way blotter is really made: perforated sheets are dosed with solution, then dried away from light and heat.
+
+| Step | How | Result |
+|---|---|---|
+| Ergot | 4% extra drop from mature wheat, or a mana pool on an **alchemy catalyst** turns wheat into ergot (1,500 mana). The Shady Trader sells it too | `ergot` |
+| Ergot loaf | Craft 3 wheat + 1 ergot | `ergot_loaf` |
+| Multiply the loaves | Mana pool on a **conjuration catalyst**: 1 loaf becomes 2 (5,000 mana) | 2 `ergot_loaf` |
+| Solution | Basin + mechanical mixer (no heat): 5 ergot loaves, 2 fish (any), 1,000 mB water | 500 mB `lsd_solution` |
+| Blotter stock | Basin + mechanical press: 2 paper | `blank_blotter` |
+| Perforate and dose | Sequenced assembly on a belt: a deployer holding a knife (it keeps the knife), then a spout with 100 mB of solution | `wet_blotter_sheet` |
+| Dry | The **Dehydrator** (8 overnight) or a Farm & Charm drying rack. There's no fan or furnace route, because light and heat ruin it | `lsd_blotter_sheet` |
+| Bless (optional) | Drop it in a mana pool (10,000 mana) | `mana_blotter_sheet` |
+| Tabs | Mechanical saw or cutting board + knife (12), or crafting grid + knife (8). Works for either sheet | `acid_tab` / `mana_acid_tab` |
+
+One mixer batch doses 5 sheets, which make 60 tabs. A simple line: mixer → fluid pipe → spout over a belt, with a deployer holding a knife just before the spout. Feed blank blotter onto the belt and collect wet sheets at the end.
+
+Eat a tab (you can eat them even when full) for a trip like the mushrooms', only longer and stronger. Shaders change twice as fast, flashes come more often, and extra shaders join the cycle (creeper, spider, green, desaturate).
+- **Acid Tab:** 4 minutes.
+- **Mana Acid Tab:** 6 minutes, with Botania sounds out of nowhere and mana-blue sparkles.
+
+Taking another mid-trip extends it. There's no quality for this chain. Recipes are in `server_scripts/sunlitweed/lsdRecipes.js`, trip lengths are in `startup_scripts/sunlitweed/weedMushrooms.js` and the visuals are in `client_scripts/sunlitweed/weedTrip.js`.
+
 ## The Plug
 
-A town NPC like the Market or the Librarian. His name is Rico, and he sells coca seeds, slaked lime, weed seeds, magic mushrooms and lines. Buy his invitation from the Shady Trader, right-click it to get his villager home, and place the home where you want him to live.
+A town NPC like the Market or the Librarian. His name is Rico, and he sells coca seeds, slaked lime, weed seeds, magic mushrooms, lines and acid tabs. Buy his invitation from the Shady Trader, right-click it to get his villager home, and place the home where you want him to live.
 
-He works like the other townsfolk: talk to him once a day for friendship, then talk again to open his shop, and crouch + right-click to give gifts. He loves cocaine bricks, refined powder and paste, likes joints, blunts, dried mushrooms and coffee, and hates tubasmokes. At max friendship he gives you 8 cocaine bricks, and later a Cobblemon mystery gift.
+He works like the other townsfolk: talk to him once a day for friendship, then talk again to open his shop, and crouch + right-click to give gifts. He loves cocaine bricks, refined powder, paste and blotter sheets, likes joints, blunts, acid tabs, dried mushrooms and coffee, and hates tubasmokes. At max friendship he gives you 8 cocaine bricks, and later a Cobblemon mystery gift.
 
 | File | What |
 |---|---|
@@ -130,8 +155,8 @@ Pack updates can overwrite `kubejs/`, so re-run the installer after updating the
 
 ```
 kubejs/
-  startup_scripts/sunlitweed/   items, crops, Dehydrator recipes, smoking, mushrooms and logs, sleep ban, The Plug's gifts, crop list hook, sell prices
-  server_scripts/sunlitweed/    recipes, season/quality tags, grass seed drop, Shady Trader spawning, Dehydrator quality hook, The Plug's NPC hooks
+  startup_scripts/sunlitweed/   items, LSD solution fluid, crops, Dehydrator recipes, smoking, mushrooms and logs, sleep ban, The Plug's gifts, crop list hook, sell prices
+  server_scripts/sunlitweed/    recipes (incl. Botania mana pool), season/quality tags, grass seed and ergot drops, Shady Trader spawning, Dehydrator quality hook, The Plug's NPC hooks
   client_scripts/sunlitweed/    tooltips, trip visuals
   assets/sunlitweed/            lang, crop, machine and log models, textures
   assets/minecraft/optifine/    Shady Trader skin (Entity Texture Features)
@@ -154,7 +179,7 @@ The textures are 16×16 placeholders drawn from ASCII grids in `tools/gen_weed_t
 python tools/gen_weed_textures.py kubejs/assets/sunlitweed/textures
 ```
 
-The Shady Trader skin is the vanilla wandering trader skin recoloured, read from the Minecraft 1.20.1 jar in the CurseForge install. If yours is somewhere else, add `--jar path	o.20.1.jar`.
+The Shady Trader skin is the vanilla wandering trader skin recoloured, read from the Minecraft 1.20.1 jar in the CurseForge install. If yours is somewhere else, add `--jar path\to\1.20.1.jar`.
 
 Or replace the PNGs in `kubejs/assets/sunlitweed/textures/` with your own.
 
@@ -170,4 +195,5 @@ These are all included in Society: Sunlit Cobblemon:
 - Quality Food
 - Society Trading (shops) and Entity Texture Features (Shady Trader skin)
 - Easy NPC and SVDialog (The Plug)
+- Botania (LSD: alchemy and conjuration catalysts, mana infusion)
 - The pack's `society:` scripts (`global.surviveCheck`, `global.cropList`, `global.trades`, `global.mushroomLogRecipes`, `global.dehydratorRecipes`, the NPC tables `npcMap`, `dialogLengths`, `maxGifts`, `villagerSpecificGifts` and `NPCMysteryGifts`, `society:mushroom_log`, `society:dehydrator`, `society:dried_tubabacco_leaf`)

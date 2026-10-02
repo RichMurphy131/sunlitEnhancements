@@ -6,10 +6,14 @@ console.info("[sunlitweed] weedMushrooms.js loaded");
 // brew it into 4 cups of tea in a Herbalbrews Tea Kettle. Each gives a trip (nausea +
 // night vision bursts here, screen shaders/particles/sounds in
 // client_scripts/sunlitweed/weedTrip.js). Quality stars stretch the trip like smoking.
+// Acid tabs (lsdRecipes.js) are eaten the same way, for longer and stronger trips;
+// intensity 4 adds Botania sounds and mana sparkles.
 global.sunlitWeedTrips = {
   "sunlitweed:dried_golden_teacher": { seconds: 120, intensity: 2 },
   "sunlitweed:dried_liberty_cap": { seconds: 60, intensity: 1 },
   "sunlitweed:mushroom_tea": { seconds: 120, intensity: 2 },
+  "sunlitweed:acid_tab": { seconds: 240, intensity: 3 },
+  "sunlitweed:mana_acid_tab": { seconds: 360, intensity: 4 },
 };
 // Night vision bursts: one every SUNLITWEED_NV_EVERY seconds, each SUNLITWEED_NV_SECONDS long
 const SUNLITWEED_NV_EVERY = 20;

@@ -9,6 +9,19 @@ StartupEvents.registry("item", (e) => {
   ["coca_leaf", "slaked_lime", "base_coca_paste", "refined_coca_powder", "cocaine_brick"].forEach((name) => {
     e.create(`sunlitweed:${name}`).texture(`sunlitweed:item/${name}`);
   });
+  // LSD chain (recipes in server_scripts/sunlitweed/lsdRecipes.js). The tabs are
+  // registered with the mushrooms in weedMushrooms.js, since they're eaten for a trip.
+  [
+    "ergot",
+    "ergot_loaf",
+    "blank_blotter",
+    "unfinished_blotter_sheet",
+    "wet_blotter_sheet",
+    "lsd_blotter_sheet",
+    "mana_blotter_sheet",
+  ].forEach((name) => {
+    e.create(`sunlitweed:${name}`).texture(`sunlitweed:item/${name}`);
+  });
 
   // Smoking (and snorting) settings live in weedSmoking.js
   ["joint", "blunt", "cocaine_line"].forEach((name) => {
@@ -21,6 +34,15 @@ StartupEvents.registry("item", (e) => {
       .use((level, player, hand) => global.sunlitWeedStartSmoking(level, player, hand))
       .finishUsing((itemstack, level, entity) => global.sunlitWeedFinishSmoking(itemstack, level, entity));
   });
+});
+
+// Same pattern as the pack's registration/registerFluids.js. Comes with a bucket.
+StartupEvents.registry("fluid", (e) => {
+  e.create("sunlitweed:lsd_solution")
+    .thinTexture(0xe6dcf5)
+    .bucketColor(0xe6dcf5)
+    .displayName("LSD Solution")
+    .tag("sunlitweed:lsd_solution");
 });
 
 // Mirrors society:tubabacco_leaf in registration/registerCrops.js: growth is

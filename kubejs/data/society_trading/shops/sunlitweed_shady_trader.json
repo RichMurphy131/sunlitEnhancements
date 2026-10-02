@@ -34,6 +34,19 @@
     },
     {
       "offer": {
+        "item": "sunlitweed:ergot",
+        "count": 2
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 2
+      },
+      "limit": 4,
+      "numismatics_cost": 128,
+      "trade_id": "shady_trader_ergot"
+    },
+    {
+      "offer": {
         "item": "sunlitweed:joint",
         "count": 1
       },

@@ -31,6 +31,14 @@ const sunlitWeedPrices = [
   { item: "sunlitweed:refined_coca_powder", value: 300 },
   { item: "sunlitweed:cocaine_brick", value: 1400 },
   { item: "sunlitweed:cocaine_line", value: 200 },
+  { item: "sunlitweed:ergot", value: 40 },
+  { item: "sunlitweed:ergot_loaf", value: 120 },
+  { item: "sunlitweed:blank_blotter", value: 10 },
+  { item: "sunlitweed:wet_blotter_sheet", value: 300 },
+  { item: "sunlitweed:lsd_blotter_sheet", value: 1500 },
+  { item: "sunlitweed:mana_blotter_sheet", value: 2800 },
+  { item: "sunlitweed:acid_tab", value: 130 },
+  { item: "sunlitweed:mana_acid_tab", value: 250 },
 ];
 
 sunlitWeedPrices.forEach((entry) => {

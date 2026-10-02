@@ -79,6 +79,18 @@
       },
       "numismatics_cost": 384,
       "trade_id": "plug_cocaine_line"
+    },
+    {
+      "offer": {
+        "item": "sunlitweed:acid_tab",
+        "count": 1
+      },
+      "request": {
+        "item": "numismatics:cog",
+        "count": 5
+      },
+      "numismatics_cost": 320,
+      "trade_id": "plug_acid_tab"
     }
   ]
 }
