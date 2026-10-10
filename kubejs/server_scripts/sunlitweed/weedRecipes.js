@@ -13,7 +13,7 @@ ServerEvents.recipes((e) => {
   };
 
   // Harvested stalk -> dried stalk. The pack's Dehydrator (startup_scripts/sunlitweed/weedDehydrator.js)
-  // keeps quality; the drying rack is the cheap option and loses it.
+  // keeps quality; a Farm & Charm Silo is the cheap option and loses it.
   e.custom({
     type: "farm_and_charm:drying",
     ingredient: { item: "sunlitweed:weed_stalk" },

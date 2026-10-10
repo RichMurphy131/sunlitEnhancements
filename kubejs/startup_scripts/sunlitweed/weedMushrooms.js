@@ -2,7 +2,7 @@
 console.info("[sunlitweed] weedMushrooms.js loaded");
 
 // Golden teachers and liberty caps. Fresh ones can't be eaten: dry them (Dehydrator
-// keeps quality, drying rack loses it), then eat them, or make a Mushroom Tea Blend and
+// keeps quality, a Farm & Charm Silo loses it), then eat them, or make a Mushroom Tea Blend and
 // brew it into 4 cups of tea in a Herbalbrews Tea Kettle. Each gives a trip (nausea +
 // night vision bursts here, screen shaders/particles/sounds in
 // client_scripts/sunlitweed/weedTrip.js). Quality stars stretch the trip like smoking.

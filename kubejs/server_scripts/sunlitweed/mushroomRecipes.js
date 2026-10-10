@@ -3,7 +3,7 @@ console.info("[sunlitweed] mushroomRecipes.js loaded");
 // Mushrooms (startup_scripts/sunlitweed/weedMushrooms.js)
 ServerEvents.recipes((e) => {
   // Inoculated logs for the Mushroom Log, and drying (the Dehydrator keeps quality,
-  // the drying rack loses it)
+  // a Farm & Charm Silo loses it)
   ["golden_teacher", "liberty_cap"].forEach((mushroom) => {
     e.shapeless(`sunlitweed:${mushroom}_log`, ["#minecraft:logs", `sunlitweed:${mushroom}`, `sunlitweed:${mushroom}`]);
     e.custom({

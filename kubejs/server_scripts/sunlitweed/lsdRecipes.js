@@ -70,7 +70,7 @@ ServerEvents.recipes((e) => {
     results: [{ item: "sunlitweed:wet_blotter_sheet" }],
   });
 
-  // The drying rack works too. There's deliberately no fan or furnace route:
+  // A Farm & Charm Silo works too. There's deliberately no fan or furnace route:
   // light and heat break it down.
   e.custom({
     type: "farm_and_charm:drying",

@@ -9,7 +9,7 @@ A KubeJS add-on for the **Society: Sunlit Cobblemon** modpack (Forge 1.20.1) tha
 | Seeds | 3% drop from grass; mature plants return 1–2 | `weed_seed` |
 | Grow | Plant on farmland; grows in spring, summer and autumn | `weed` crop |
 | Harvest | Break a mature plant | 1–2 `weed_stalk` |
-| Dry | The pack's **Dehydrator**: 8 stalks overnight, keeps quality. Or a Farm & Charm drying rack, which loses quality | `dried_weed_stalk` |
+| Dry | The pack's **Dehydrator**: 8 stalks overnight, keeps quality. Or a Farm & Charm Silo, which loses quality | `dried_weed_stalk` |
 | Trim | Cutting board + knife (3 buds), or crafting grid + knife (2 buds) | `weed_bud` |
 | Grind | Create millstone, Create crushing wheels (both keep quality), or Farm & Charm mincer (loses it) | 2 `ground_weed` |
 | Blunt wrap | Dried tubabacco leaf → Create press or cutting board (2), or crafting + knife (1) | `blunt_wrap` |
@@ -18,7 +18,7 @@ A KubeJS add-on for the **Society: Sunlit Cobblemon** modpack (Forge 1.20.1) tha
 
 ## Quality
 
-Quality stars from the harvest carry through the whole chain: Dehydrator → cutting board or knife → millstone or crushing wheels → rolling. The drying rack and the mincer drop them. Starred joints and blunts sell for more in the shipping bin, and their effects last longer: ×1.25, ×1.5 or ×2 for 1, 2 or 3 stars.
+Quality stars from the harvest carry through the whole chain: Dehydrator → cutting board or knife → millstone or crushing wheels → rolling. The Silo and the mincer drop them. Starred joints and blunts sell for more in the shipping bin, and their effects last longer: ×1.25, ×1.5 or ×2 for 1, 2 or 3 stars.
 
 ## Dehydrator
 
@@ -59,7 +59,7 @@ Each trade is limited to 4 unless noted. The shop is `data/society_trading/shops
 
 Fresh **golden teachers** and **liberty caps** can't be eaten. Dry them first:
 - **Dehydrator:** 8 at a time overnight, keeps quality (same as weed stalks).
-- **Farm & Charm drying rack:** loses quality.
+- **Farm & Charm Silo:** loses quality.
 
 Eat a dried mushroom (you can eat them even when full), or brew mushroom tea:
 1. **Mushroom Tea Blend:** craft 2 dried mushrooms (golden teachers and liberty caps in any mix) with 4 tea leaves. Any Herbalbrews leaf works: green tea leaf, or dried green, black or oolong tea.
@@ -106,7 +106,7 @@ Loaves and fishes: five loaves, two fishes, and twelve baskets left over. LSD co
 | Solution | Basin + mechanical mixer (no heat): 5 ergot loaves, 2 fish (any), 1,000 mB water | 500 mB `lsd_solution` |
 | Blotter stock | Basin + mechanical press: 2 paper | `blank_blotter` |
 | Perforate and dose | Sequenced assembly on a belt: a deployer holding a knife (it keeps the knife), then a spout with 100 mB of solution | `wet_blotter_sheet` |
-| Dry | The **Dehydrator** (8 overnight) or a Farm & Charm drying rack. There's no fan or furnace route, because light and heat ruin it | `lsd_blotter_sheet` |
+| Dry | The **Dehydrator** (8 overnight) or a Farm & Charm Silo. There's no fan or furnace route, because light and heat ruin it | `lsd_blotter_sheet` |
 | Bless (optional) | Drop it in a mana pool (10,000 mana) | `mana_blotter_sheet` |
 | Tabs | Mechanical saw or cutting board + knife (12), or crafting grid + knife (8). Works for either sheet | `acid_tab` / `mana_acid_tab` |
 
@@ -156,7 +156,7 @@ Pack updates can overwrite `kubejs/`, so re-run the installer after updating the
 ```
 kubejs/
   startup_scripts/sunlitweed/   items, LSD solution fluid, crops, Dehydrator recipes, smoking, mushrooms and logs, sleep ban, The Plug's gifts, crop list hook, sell prices
-  server_scripts/sunlitweed/    recipes (incl. Botania mana pool), season/quality tags, grass seed and ergot drops, Shady Trader spawning, Dehydrator quality hook, The Plug's NPC hooks
+  server_scripts/sunlitweed/    recipes (incl. Botania mana pool), season/quality tags, grass seed and ergot drops, Shady Trader spawning, Dehydrator quality hook, The Plug's NPC hooks, pack farming tweaks (Silo: Low Quality Fertilizer → Plant Nutrients)
   client_scripts/sunlitweed/    tooltips, trip visuals
   assets/sunlitweed/            lang, crop, machine and log models, textures
   assets/minecraft/optifine/    Shady Trader skin (Entity Texture Features)
